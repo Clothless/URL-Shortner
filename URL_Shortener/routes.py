@@ -6,7 +6,10 @@ shortener = Blueprint('shortener', __name__)
 
 @shortener.route('/<short_url>')
 def redirect_to_url(short_url):
-	return ""
+	link = Link.query.filter_by(short_url = short_url).first_or_404()
+	link.views = link.views + 1
+	db.session.commit()
+	return redirect(link.original_url)
 
 
 @shortener.route('/create_link', methods=['POST'])
