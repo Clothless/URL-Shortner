@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect
 from .extensions import db
 from .models import Link
+from .auth import require_auth
 
 shortener = Blueprint('shortener', __name__)
 
@@ -28,8 +29,11 @@ def index():
 
 
 @shortener.route('/analytics')
+@require_auth
 def analytics():
-	return ""
+	links = Link.query.all()
+
+	return render_template('analytics.html', links=links)
 
 
 @shortener.errorhandler(404)
