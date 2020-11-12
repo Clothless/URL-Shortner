@@ -1,7 +1,7 @@
 import os
 
 #SQLALCHEMY_DATABASE_URL = os.environ.get('DATABASE_URL')
-SQLALCHEMY_DATABASE_URL = 'sqlite:///db.sqlite3'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///db.sqlite3'
 
 SQLALCHEMY_TRACK_NOTIFICATIONS = False
 ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME')
